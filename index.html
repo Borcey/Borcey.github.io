@@ -1,11 +1,481 @@
 <!doctype html>
 <html lang="tr">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Hello</title>
-  </head>
-  <body>
-    <h1>Hello Bora Ceylan</h1>
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bora Ceylan | Portfolio</title>
+  <meta name="description" content="Bora Ceylan — Bioengineering & Computer Engineering student. Bioinformatics, ML, GWAS, and biotech R&D." />
+  <style>
+    :root{
+      --bg:#0b1020;
+      --panel:rgba(255,255,255,.06);
+      --panel2:rgba(255,255,255,.10);
+      --text:#e8ecff;
+      --muted:rgba(232,236,255,.72);
+      --line:rgba(232,236,255,.14);
+      --shadow: 0 20px 60px rgba(0,0,0,.35);
+      --r:18px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background:
+        radial-gradient(900px 500px at 20% 10%, rgba(99,102,241,.35), transparent 60%),
+        radial-gradient(900px 500px at 80% 30%, rgba(16,185,129,.22), transparent 60%),
+        radial-gradient(900px 500px at 40% 90%, rgba(236,72,153,.18), transparent 60%),
+        linear-gradient(180deg, #070a14 0%, #0b1020 30%, #070a14 100%);
+      overflow-x:hidden;
+    }
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:1100px; margin:0 auto; padding:28px 18px 60px}
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      position:sticky; top:0; z-index:10;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(180deg, rgba(11,16,32,.85), rgba(11,16,32,.55));
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:10px 14px;
+      box-shadow: var(--shadow);
+      margin:10px auto 22px;
+      max-width:1100px;
+    }
+    .brand{display:flex; gap:10px; align-items:center; font-weight:700; letter-spacing:.2px}
+    .dot{
+      width:12px;height:12px;border-radius:50%;
+      background: linear-gradient(135deg, rgba(99,102,241,1), rgba(16,185,129,1));
+      box-shadow: 0 0 0 4px rgba(255,255,255,.06);
+    }
+    .navlinks{display:flex; gap:12px; align-items:center; flex-wrap:wrap}
+    .pill{
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      font-size:14px;
+      color:var(--muted);
+      transition:.2s transform, .2s background, .2s border-color;
+    }
+    .pill:hover{transform: translateY(-1px); background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.22); color:var(--text)}
+    .hero{
+      display:grid;
+      grid-template-columns: 1.35fr .85fr;
+      gap:18px;
+      align-items:stretch;
+      margin-top:18px;
+    }
+    .card{
+      background: linear-gradient(180deg, var(--panel), rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      border-radius: var(--r);
+      box-shadow: var(--shadow);
+      padding:22px;
+    }
+    .headline{
+      font-size: 44px;
+      line-height: 1.05;
+      margin: 4px 0 10px;
+      letter-spacing:-.6px;
+    }
+    .sub{
+      color:var(--muted);
+      font-size:16px;
+      line-height:1.6;
+      margin:0 0 16px;
+    }
+    .badges{display:flex; gap:10px; flex-wrap:wrap; margin:14px 0 0}
+    .badge{
+      font-size:13px;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      color:var(--muted);
+    }
+    .cta{display:flex; gap:10px; flex-wrap:wrap; margin-top:18px}
+    .btn{
+      display:inline-flex; align-items:center; gap:9px;
+      padding:11px 14px;
+      border-radius: 12px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      color:var(--text);
+      font-weight:600;
+      font-size:14px;
+      transition:.2s transform, .2s background, .2s border-color;
+    }
+    .btn:hover{transform:translateY(-1px); background: rgba(255,255,255,.10); border-color: rgba(255,255,255,.24)}
+    .btn.primary{
+      border-color: rgba(99,102,241,.55);
+      background: linear-gradient(135deg, rgba(99,102,241,.35), rgba(16,185,129,.22));
+    }
+    .btn .icon{opacity:.9}
+    .sidegrid{display:grid; gap:12px}
+    .mini h3{margin:0 0 8px; font-size:16px}
+    .mini p{margin:0; color:var(--muted); line-height:1.55; font-size:14px}
+    .kpi{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin-top:14px;
+    }
+    .kpi .k{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      border-radius:14px;
+      padding:12px;
+    }
+    .k .num{font-size:18px; font-weight:800}
+    .k .lbl{font-size:12px; color:var(--muted); margin-top:4px}
+    section{margin-top:18px}
+    .section-title{
+      display:flex; align-items:baseline; justify-content:space-between; gap:10px;
+      margin: 8px 0 10px;
+    }
+    .section-title h2{margin:0; font-size:18px}
+    .section-title span{color:var(--muted); font-size:13px}
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:12px;
+    }
+    .col6{grid-column: span 6}
+    .col4{grid-column: span 4}
+    .col8{grid-column: span 8}
+    .project h3{margin:0 0 8px; font-size:16px}
+    .project p{margin:0 0 10px; color:var(--muted); line-height:1.6; font-size:14px}
+    .tags{display:flex; gap:8px; flex-wrap:wrap}
+    .tag{
+      font-size:12px; padding:6px 9px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color:var(--muted);
+    }
+    .list{margin:0; padding:0; list-style:none; display:grid; gap:10px}
+    .item{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      border-radius:14px;
+      padding:12px;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      align-items:flex-start;
+    }
+    .item strong{display:block; font-size:14px}
+    .item small{color:var(--muted)}
+    .footer{
+      margin-top:18px;
+      text-align:center;
+      color:var(--muted);
+      font-size:13px;
+      padding:14px 0 0;
+    }
+    .divider{
+      height:1px; background:var(--line);
+      margin:14px 0 0;
+    }
+    @media (max-width: 920px){
+      .hero{grid-template-columns:1fr; }
+      .headline{font-size:36px}
+      .col6,.col4,.col8{grid-column: span 12}
+      .nav{position:relative; top:auto}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="nav">
+    <div class="brand">
+      <span class="dot" aria-hidden="true"></span>
+      <span>Bora Ceylan</span>
+    </div>
+    <div class="navlinks">
+      <a class="pill" href="#about">About</a>
+      <a class="pill" href="#projects">Projects</a>
+      <a class="pill" href="#skills">Skills</a>
+      <a class="pill" href="#experience">Experience</a>
+      <a class="pill" href="#contact">Contact</a>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <!-- HERO -->
+    <div class="hero">
+      <div class="card">
+        <div class="badge" style="display:inline-block;margin-bottom:10px;">
+          Bioengineering × Computer Engineering • Bioinformatics & ML
+        </div>
+
+        <h1 class="headline">Bora Ceylan</h1>
+        <p class="sub">
+          I build data-driven tools at the intersection of <b>biology</b> and <b>software</b>.
+          My focus is on bioinformatics pipelines, machine learning for omics data, and practical engineering workflows.
+        </p>
+
+        <div class="badges">
+          <span class="badge">GWAS / QC pipelines</span>
+          <span class="badge">miRNA biomarkers</span>
+          <span class="badge">Feature selection</span>
+          <span class="badge">Python • R • Linux</span>
+        </div>
+
+        <div class="cta">
+          <a class="btn primary" href="#projects">
+            <span class="icon">🚀</span> View Projects
+          </a>
+          <a class="btn" href="#contact">
+            <span class="icon">✉️</span> Contact
+          </a>
+          <!-- İstersen buraya CV linki koy -->
+          <a class="btn" href="#" onclick="alert('CV linkini buraya koyacağız (Google Drive / PDF / LinkedIn).'); return false;">
+            <span class="icon">📄</span> Resume
+          </a>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="kpi">
+          <div class="k">
+            <div class="num">Bioinformatics</div>
+            <div class="lbl">Pipelines • QC • annotation • reproducibility</div>
+          </div>
+          <div class="k">
+            <div class="num">Machine Learning</div>
+            <div class="lbl">Feature selection • CV • evaluation • Optuna</div>
+          </div>
+          <div class="k">
+            <div class="num">Engineering</div>
+            <div class="lbl">Process thinking • systems • practical delivery</div>
+          </div>
+          <div class="k">
+            <div class="num">Collaboration</div>
+            <div class="lbl">Research teams • documentation • communication</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidegrid">
+        <div class="card mini" id="about">
+          <h3>About</h3>
+          <p>
+            Bioengineering & Computer Engineering student. Interested in applying ML and statistics to real biological problems,
+            while keeping everything clean, reproducible, and well-documented.
+          </p>
+        </div>
+
+        <div class="card mini">
+          <h3>Currently</h3>
+          <p>
+            Working on omics-driven biomarker discovery and bioinformatics data workflows.
+            Building small tools that make research faster and outputs easier to trust.
+          </p>
+        </div>
+
+        <div class="card mini">
+          <h3>Links</h3>
+          <p>
+            <a class="pill" style="display:inline-block;margin:6px 8px 0 0;" href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
+            <a class="pill" style="display:inline-block;margin:6px 8px 0 0;" href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a class="pill" style="display:inline-block;margin:6px 8px 0 0;" href="#contact">Email</a>
+          </p>
+          <p style="margin-top:10px;color:var(--muted);font-size:13px;">
+            (Linkleri kendi profillerinle değiştir.)
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="section-title">
+        <h2>Projects</h2>
+        <span>Selected work (edit titles + links)</span>
+      </div>
+
+      <div class="grid">
+        <div class="card project col6">
+          <h3>LUAD miRNA Feature Selection Pipeline</h3>
+          <p>
+            End-to-end pipeline for differential expression, feature selection (wrapper + embedded),
+            model evaluation, and interpretation. Includes reproducible runs and clean reporting.
+          </p>
+          <div class="tags">
+            <span class="tag">Python</span><span class="tag">R</span><span class="tag">Optuna</span>
+            <span class="tag">LASSO</span><span class="tag">Random Forest</span><span class="tag">CV</span>
+          </div>
+          <div class="cta" style="margin-top:12px;">
+            <a class="btn" href="#" onclick="alert('Buraya repo linkini koy.'); return false;">Repo</a>
+            <a class="btn" href="#" onclick="alert('Buraya kısa rapor / PDF linki koy.'); return false;">Report</a>
+          </div>
+        </div>
+
+        <div class="card project col6">
+          <h3>GWAS QC & LD Clumping Toolkit</h3>
+          <p>
+            Automated QC steps for summary stats, harmonization, filtering, and clumping workflows
+            that stay consistent across multiple traits.
+          </p>
+          <div class="tags">
+            <span class="tag">R</span><span class="tag">data.table</span><span class="tag">PLINK</span>
+            <span class="tag">LD clumping</span><span class="tag">Reproducible</span>
+          </div>
+          <div class="cta" style="margin-top:12px;">
+            <a class="btn" href="#" onclick="alert('Repo linki'); return false;">Repo</a>
+            <a class="btn" href="#" onclick="alert('Docs linki'); return false;">Docs</a>
+          </div>
+        </div>
+
+        <div class="card project col6">
+          <h3>Genome Annotation & Enzyme Discovery</h3>
+          <p>
+            Annotation verification and enzyme-focused analysis with emphasis on extremophiles and
+            industrial biotechnology use-cases.
+          </p>
+          <div class="tags">
+            <span class="tag">Bioinformatics</span><span class="tag">MicroScope</span><span class="tag">BV-BRC</span>
+            <span class="tag">Xylanase</span>
+          </div>
+          <div class="cta" style="margin-top:12px;">
+            <a class="btn" href="#" onclick="alert('Repo / poster linki'); return false;">Materials</a>
+          </div>
+        </div>
+
+        <div class="card project col6">
+          <h3>Process Simulation: Biodiesel Production</h3>
+          <p>
+            Process flow and mass balance-driven simulation with clear stream/equipment tracking.
+            Designed for report-ready outputs and engineering clarity.
+          </p>
+          <div class="tags">
+            <span class="tag">SuperPro Designer</span><span class="tag">Mass Balance</span><span class="tag">Process Design</span>
+          </div>
+          <div class="cta" style="margin-top:12px;">
+            <a class="btn" href="#" onclick="alert('Rapor / görsel linki'); return false;">Report</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="section-title">
+        <h2>Skills</h2>
+        <span>What I use day-to-day</span>
+      </div>
+
+      <div class="grid">
+        <div class="card col4">
+          <h3 style="margin:0 0 10px;">Programming</h3>
+          <div class="tags">
+            <span class="tag">Python</span><span class="tag">R</span><span class="tag">C</span>
+            <span class="tag">Linux</span><span class="tag">Git/GitHub</span>
+          </div>
+        </div>
+        <div class="card col4">
+          <h3 style="margin:0 0 10px;">Data & ML</h3>
+          <div class="tags">
+            <span class="tag">Feature Selection</span><span class="tag">Model Validation</span>
+            <span class="tag">Optuna</span><span class="tag">RF / LASSO</span>
+            <span class="tag">Metrics</span>
+          </div>
+        </div>
+        <div class="card col4">
+          <h3 style="margin:0 0 10px;">Bioinformatics</h3>
+          <div class="tags">
+            <span class="tag">GWAS</span><span class="tag">QC</span><span class="tag">Annotation</span>
+            <span class="tag">Omics</span><span class="tag">Pipelines</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <div class="section-title">
+        <h2>Experience</h2>
+        <span>Edit with real roles + dates</span>
+      </div>
+
+      <div class="card">
+        <ul class="list">
+          <li class="item">
+            <div>
+              <strong>Research / Internship — Bioinformatics & Data</strong>
+              <small>Short line about what you did, impact, tools.</small>
+            </div>
+            <small>202X</small>
+          </li>
+          <li class="item">
+            <div>
+              <strong>University Projects — ML & Engineering</strong>
+              <small>Systems thinking, documentation, reproducible workflows.</small>
+            </div>
+            <small>202X–202X</small>
+          </li>
+          <li class="item">
+            <div>
+              <strong>Leadership — Student Society</strong>
+              <small>Organization, communication, project coordination.</small>
+            </div>
+            <small>202X</small>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="section-title">
+        <h2>Contact</h2>
+        <span>Make it easy to reach you</span>
+      </div>
+
+      <div class="grid">
+        <div class="card col8">
+          <h3 style="margin:0 0 10px;">Let’s build something useful.</h3>
+          <p class="sub" style="margin-bottom:0;">
+            If you want to collaborate, talk about internships, or ask about a project, send a message.
+          </p>
+          <div class="cta">
+            <a class="btn primary" href="mailto:your.email@example.com">
+              <span class="icon">✉️</span> your.email@example.com
+            </a>
+            <a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noreferrer">
+              <span class="icon">🔗</span> LinkedIn
+            </a>
+            <a class="btn" href="https://github.com/" target="_blank" rel="noreferrer">
+              <span class="icon">🐙</span> GitHub
+            </a>
+          </div>
+          <p style="margin-top:10px;color:var(--muted);font-size:13px;">
+            Email/LinkedIn/GitHub linklerini kendi linklerinle değiştir.
+          </p>
+        </div>
+
+        <div class="card col4">
+          <h3 style="margin:0 0 10px;">Quick edits</h3>
+          <p class="sub" style="margin:0;">
+            <b>1)</b> Links kısmını kendi profil URL’lerinle değiştir<br/>
+            <b>2)</b> Resume butonuna CV PDF linki koy<br/>
+            <b>3)</b> Projects kartlarındaki repo linklerini ekle
+          </p>
+        </div>
+      </div>
+
+      <div class="footer">
+        © <span id="y"></span> Bora Ceylan • Built with plain HTML/CSS • Hosted on GitHub Pages
+      </div>
+    </section>
+  </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+
+</body>
 </html>
